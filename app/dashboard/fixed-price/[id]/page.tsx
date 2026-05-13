@@ -20,6 +20,7 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ConfirmDialog } from "../_component/confirm-dialog";
+import ProductQA from "../_component/product-qa";
 
 const Page = () => {
   const [open, setOpen] = useState(false);
@@ -237,46 +238,46 @@ const Page = () => {
         </div>
 
         {/* BUYER */}
-       <div className="rounded-2xl border p-5 space-y-5">
-                 <div className="flex items-center gap-2">
-                   <ShoppingBag className="size-5" />
-                   <h2 className="text-lg font-semibold">Buyer Info</h2>
-                 </div>
-       
-                 {product?.buyer ? (
-                   <div className="flex items-center gap-4">
-                     <div className="relative h-14 w-14 overflow-hidden rounded-full border">
-                       <Image
-                         src={
-                           product?.buyer?.profilePicture?.location || "/avatar.png"
-                         }
-                         alt="buyer"
-                         fill
-                         className="object-cover"
-                       />
-                     </div>
-       
-                     <div>
-                       <p className="font-semibold">
-                         {product?.buyer?.userName || "-"}
-                       </p>
-       
-                       <p className="text-sm text-muted-foreground">
-                         {product?.buyer?.email || "-"}
-                       </p>
-       
-                       <p className="text-sm mt-1">
-                         ⭐ {product?.buyer?.rating ?? "0"}
-                       </p>
-                     </div>
-                   </div>
-                 ) : (
-                   <div className="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
-                     <ShoppingBag className="size-8 mb-2 opacity-50" />
-                     <p className="text-sm">No buyer yet</p>
-                   </div>
-                 )}
-               </div>
+        <div className="rounded-2xl border p-5 space-y-5">
+          <div className="flex items-center gap-2">
+            <ShoppingBag className="size-5" />
+            <h2 className="text-lg font-semibold">Buyer Info</h2>
+          </div>
+
+          {product?.buyer ? (
+            <div className="flex items-center gap-4">
+              <div className="relative h-14 w-14 overflow-hidden rounded-full border">
+                <Image
+                  src={
+                    product?.buyer?.profilePicture?.location || "/avatar.png"
+                  }
+                  alt="buyer"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div>
+                <p className="font-semibold">
+                  {product?.buyer?.userName || "-"}
+                </p>
+
+                <p className="text-sm text-muted-foreground">
+                  {product?.buyer?.email || "-"}
+                </p>
+
+                <p className="text-sm mt-1">
+                  ⭐ {product?.buyer?.rating ?? "0"}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
+              <ShoppingBag className="size-8 mb-2 opacity-50" />
+              <p className="text-sm">No buyer yet</p>
+            </div>
+          )}
+        </div>
       </div>
       <ConfirmDialog
         open={open}
@@ -289,6 +290,7 @@ const Page = () => {
         }}
         onConfirm={confirmDelete}
       />
+      <ProductQA />
     </div>
   );
 };

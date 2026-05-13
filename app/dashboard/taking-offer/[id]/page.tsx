@@ -20,6 +20,7 @@ import {
 } from "@/app/feature/taking-offer/hooks";
 import { useState } from "react";
 import { ConfirmDialog } from "../../fixed-price/_component/confirm-dialog";
+import ProductQA from "../_component/product-qa";
 
 const Page = () => {
   const router = useRouter();
@@ -303,6 +304,7 @@ const Page = () => {
         }}
         onConfirm={confirmDelete}
       />
+      <ProductQA />
     </div>
   );
 };

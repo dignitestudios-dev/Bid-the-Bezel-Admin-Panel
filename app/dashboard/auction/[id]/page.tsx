@@ -29,6 +29,7 @@ import { useGetAuctionById } from "@/app/feature/auction/hooks";
 import { useDeleteProduct } from "@/app/feature/fixed-price/hooks";
 import { useState } from "react";
 import { ConfirmDialog } from "../../fixed-price/_component/confirm-dialog";
+import ProductQA from "../_component/product-qa";
 
 const Page = () => {
   const router = useRouter();
@@ -382,6 +383,7 @@ const Page = () => {
         }}
         onConfirm={confirmDelete}
       />
+      <ProductQA />
     </div>
   );
 };
