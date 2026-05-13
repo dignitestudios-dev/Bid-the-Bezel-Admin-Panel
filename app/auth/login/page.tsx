@@ -42,8 +42,7 @@ const Login = () => {
 
       <form onSubmit={loginForm.handleSubmit(onSubmit)} className="space-y-5">
         <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-
+          
           <FloatingInput
             id="email"
             label="Email"
@@ -55,7 +54,7 @@ const Login = () => {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="password">Password</Label>
+        
 
           <FloatingInput
             id="password"
