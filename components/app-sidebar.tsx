@@ -279,15 +279,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton size="lg" asChild>
               <Link href="/dashboard">
                 <div className="flex items-center gap-3">
-                  <Image
-                    src="images/fav-icon.png"
-                    width={35}
-                    height={35}
-                    alt="Favicon"
-                    unoptimized
-                  />
+                 <Logo size={50} />
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col mt-3">
                     <span className="text-sm font-semibold leading-none">
                       Bid The Bezel
                     </span>
