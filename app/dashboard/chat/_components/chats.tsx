@@ -266,7 +266,6 @@ const Chats = () => {
             : "bg-white border border-gray-200 text-gray-900 rounded-bl-md"
         }`}
                 >
-                  {/* TEXT */}
                   {item?.text && (
                     <p className="rounded-xl rounded-bl-none max-w-md break-all ">
                       {item.text}
@@ -292,7 +291,7 @@ const Chats = () => {
                               <img
                                 src={url}
                                 alt="media"
-                                className="max-w-55 max-h-50 object-cover rounded-lg border"
+                                className="w-55 h-50 object-cover rounded-lg border"
                               />
                             )}
 
@@ -300,7 +299,7 @@ const Chats = () => {
                               <video
                                 src={url}
                                 controls
-                                className="max-w-55 max-h-50 rounded-lg border"
+                                className="w-55 h-50 rounded-lg border"
                               />
                             )}
 
@@ -328,7 +327,23 @@ const Chats = () => {
                       isMine ? "text-gray-400 text-right" : "text-gray-500"
                     }`}
                   >
-                    {formatTime(item.createdAt)}
+                    <div className="flex items-center justify-end gap-1 mt-1 ">
+                      {item.status === "sending" ? (
+                        <div className="flex items-center gap-1 text-gray-400">
+                          <Clock className="w-3 h-3 animate-pulse " />
+                          <span className=" text-xs">Sending...</span>
+                        </div>
+                      ) : item.status === "failed" ? (
+                        <div className="flex items-center gap-1 text-red-400">
+                          <X className="w-3 h-3" />
+                          <span className="text-xs">Failed</span>
+                        </div>
+                      ) : (
+                        <span className="text-gray-400 text-xs">
+                          {formatTime(item.createdAt)}
+                        </span>
+                      )}
+                    </div>
                   </span>
                 </div>
 
