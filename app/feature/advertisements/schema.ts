@@ -12,8 +12,11 @@ export const advertisementSchema = z.object({
     .max(1000, "Content must be less than 1000 characters"),
   image: z
     .any()
-    .refine((file) => file instanceof File || typeof file === "string", {
+    .refine((file) => file instanceof File, {
       message: "Image is required",
+    })
+    .refine((file) => file?.size <= 10 * 1024 * 1024, {
+      message: "Image must be less than 10MB",
     }),
   is_active: z.boolean().optional(),
   link: z
@@ -38,14 +41,12 @@ export const updateAdvertisementSchema = z.object({
   image: z
     .any()
     .optional()
-    .refine(
-      (file) => {
-        return !file || file instanceof File;
-      },
-      {
-        message: "Invalid image",
-      },
-    ),
+    .refine((file) => !file || file instanceof File, {
+      message: "Invalid image",
+    })
+    .refine((file) => !file || file.size <= 10 * 1024 * 1024, {
+      message: "Image must be less than 10MB",
+    }),
 });
 
 export type AdvertisementFormValues = z.infer<typeof advertisementSchema>;

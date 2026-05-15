@@ -30,6 +30,7 @@ import { useDeleteProduct } from "@/app/feature/fixed-price/hooks";
 import { useState } from "react";
 import { ConfirmDialog } from "../../fixed-price/_component/confirm-dialog";
 import ProductQA from "../_component/product-qa";
+import { formatDate, formatTime } from "@/lib/utils/date.utils";
 
 const Page = () => {
   const router = useRouter();
@@ -217,6 +218,16 @@ const Page = () => {
                 ${product?.auction?.currentBidAmount || 0}
               </p>
             </div>
+            {product?.reservePrice > 0 && (
+              <div className="rounded-xl border p-4">
+                <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
+                  <Gavel className="size-4" />
+                  Reserved Price
+                </div>
+
+                <p className="text-2xl font-bold">${product.reservePrice}</p>
+              </div>
+            )}
 
             <div className="rounded-xl border p-4">
               <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
@@ -236,7 +247,7 @@ const Page = () => {
               </div>
 
               <p className="text-sm font-medium">
-                {new Date(product?.auction?.startsAt).toLocaleString()}
+                {formatDate(product?.auction?.startsAt)}
               </p>
             </div>
 
@@ -247,7 +258,7 @@ const Page = () => {
               </div>
 
               <p className="text-sm font-medium">
-                {new Date(product?.auction?.endsAt).toLocaleString()}
+                {formatDate(product?.auction?.endsAt)}
               </p>
             </div>
           </div>

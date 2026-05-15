@@ -98,6 +98,7 @@ export function DataTable({
                 <TableHead>Advertisement</TableHead>
                 <TableHead>Content</TableHead>
                 <TableHead>Link</TableHead>
+                  <TableHead>Status</TableHead>
 
                 <TableHead>Created At</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
@@ -147,6 +148,17 @@ export function DataTable({
                       )}
                     </TableCell>
 
+                    <TableCell>
+                    {advertisement?.is_active ? (
+                      <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
+                        Active
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800">
+                        Inactive
+                      </span>
+                    )}
+                    </TableCell>
                     <TableCell>
                       <span className="text-sm">
                         {new Date(

@@ -129,7 +129,7 @@ const Page = () => {
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 text-3xl font-bold">
               <DollarSign className="size-7" />
-              {product?.price}
+              {product?.effectivePrice}
             </div>
 
             <Badge

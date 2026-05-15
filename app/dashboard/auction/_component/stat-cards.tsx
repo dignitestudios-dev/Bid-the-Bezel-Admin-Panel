@@ -49,19 +49,20 @@ const metrics = (stats: any) => [
 ];
 
 export function StatCards({ auctionStats }: any) {
-
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3">
       {metrics(auctionStats).map((m, i) => (
-        <Card key={i} className="border rounded-xl hover:shadow-sm transition">
-          <CardContent className="p-3 flex flex-col gap-2">
+        <Card key={i} className="border">
+          <CardContent className="space-y-2">
             <div className="flex items-center justify-between">
-              <m.icon className={`size-4 ${m.color}`} />
+              <m.icon className="text-muted-foreground size-6" />
             </div>
 
-            <div>
-              <p className="text-xs text-muted-foreground">{m.title}</p>
-              <p className="text-lg font-bold">{m.value}</p>
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-sm font-medium">
+                {m.title}
+              </p>
+              <div className="text-2xl font-bold">{m.value}</div>
             </div>
           </CardContent>
         </Card>

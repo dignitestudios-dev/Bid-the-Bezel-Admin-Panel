@@ -70,7 +70,7 @@ export function CreateNotificationModal({ open, onOpenChange }: Props) {
           </DialogHeader>
         </div>
 
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 sm:max-w-xl rounded-2xl p-0">
           <div className="space-y-5 px-6 py-5">
             <FloatingInput
               id="title"

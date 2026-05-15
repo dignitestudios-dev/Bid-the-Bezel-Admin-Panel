@@ -26,18 +26,18 @@ export function StatCards({ takingStats }: any) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {performanceMetrics.map((metric, index) => (
-        <Card
-          key={index}
-          className="border rounded-xl hover:shadow-sm transition"
-        >
-          <CardContent className=" flex items-center justify-between">
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">{metric.title}</p>
-
-              <p className="text-2xl font-bold">{metric.current}</p>
+        <Card key={index} className="border">
+          <CardContent className="space-y-2">
+            <div className="flex items-center justify-between">
+              <metric.icon className="text-muted-foreground size-6" />
             </div>
 
-            <metric.icon className={`size-6 ${metric.color}`} />
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-sm font-medium">
+                {metric.title}
+              </p>
+              <div className="text-2xl font-bold">{metric.current}</div>
+            </div>
           </CardContent>
         </Card>
       ))}

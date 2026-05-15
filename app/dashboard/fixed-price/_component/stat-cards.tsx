@@ -33,17 +33,21 @@ export function StatCards({ fixedStats }: any) {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {performanceMetrics(fixedStats).map((m, i) => (
-        <Card key={i} className="border rounded-xl hover:shadow-sm transition">
-          <CardContent className=" flex items-center justify-between">
-            <div className="space-y-1">
-              <p className="text-sm text-muted-foreground">{m.title}</p>
-
-              <p className="text-2xl font-bold">{m.value}</p>
+         <Card key={i} className="border">
+          <CardContent className="space-y-2">
+            <div className="flex items-center justify-between">
+              <m.icon className="text-muted-foreground size-6" />
             </div>
 
-            <m.icon className={`size-6 ${m.color}`} />
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-sm font-medium">
+                {m.title}
+              </p>
+              <div className="text-2xl font-bold">{m.value}</div>
+            </div>
           </CardContent>
         </Card>
+      
       ))}
     </div>
   );
