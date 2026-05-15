@@ -213,7 +213,7 @@ export function CreateAdvertisementModal({
               <label className="flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed p-4 transition hover:bg-muted/40">
                 <input
                   type="file"
-                  accept="image/*"
+                  accept=".jpg,.jpeg,.png,.webp"
                   className="hidden"
                   onChange={handleImageChange}
                 />

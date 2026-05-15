@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ToggleLeft, ToggleRight } from "lucide-react";
 import { useActiveInactiveUser } from "@/app/feature/users/hooks";
+import Image from "next/image";
 const Page = () => {
   const params = useParams();
   const id = params?.id as string;
@@ -39,9 +40,16 @@ const Page = () => {
   return (
     <div className="p-6 space-y-5">
       <div className="flex items-center gap-4 p-5 border rounded-xl bg-background">
-        <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-base font-medium shrink-0">
-          {initials}
-        </div>
+     <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full border bg-muted">
+  <Image
+    src={user?.profilePicture?.location || "/avatar.png"}
+    width={60}
+    height={60}
+    alt={user?.userName || "user"}
+    unoptimized
+    className="h-full w-full object-cover rounded-full"
+  />
+</div>
         <div className="flex-1 min-w-0">
           <h1 className="text-lg font-medium truncate">
             {user.userName || "No Username"}

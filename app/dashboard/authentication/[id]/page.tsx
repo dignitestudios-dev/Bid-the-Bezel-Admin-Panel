@@ -104,7 +104,9 @@ const Page = () => {
         status: type,
       },
       {
-        onSuccess: () => setConfirm(null),
+        onSuccess: () =>{
+          router.push("/dashboard/authentication");
+          setConfirm(null)},
       },
     );
   };

@@ -29,7 +29,7 @@ export function StatCards({ userStats }: any) {
       icon: UserCheck,
     },
     {
-      title: "Inacitve Users",
+      title: "Inactive Users",
       current: userStats?.inactiveUsers || 0,
       icon: Clock5,
     },

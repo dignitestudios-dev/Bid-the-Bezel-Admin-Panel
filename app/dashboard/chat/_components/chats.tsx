@@ -103,7 +103,7 @@ const Chats = () => {
     };
   }, []);
 
-  /* ---------------- AUTO SCROLL ---------------- */
+  /* --- ------------- AUTO SCROLL ---------------- */
 
   useEffect(() => {
     if (messagesRef.current) {

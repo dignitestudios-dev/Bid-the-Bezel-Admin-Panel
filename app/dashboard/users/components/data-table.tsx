@@ -132,7 +132,7 @@ export function DataTable({
             <TableHeader>
               <TableRow>
                 <TableHead>User</TableHead>
-                <TableHead>Email Verified</TableHead>
+                
                 <TableHead>Subscribed</TableHead>
                 <TableHead>User Status</TableHead>
                 <TableHead>Actions</TableHead>
@@ -146,13 +146,17 @@ export function DataTable({
                     {/* USER */}
                     <TableCell>
                       <div className="flex items-center gap-3">
-                        <Image
-                          src={user?.profilePicture?.location || "/avatar.png"}
-                          alt={user?.userName || "user"}
-                          width={32}
-                          height={32}
-                          className="rounded-full object-cover"
-                        />
+                        <div className="relative h-10 w-10 overflow-hidden rounded-full bg-gray-100 shrink-0">
+                          <Image
+                            src={
+                              user?.profilePicture?.location || "/avatar.png"
+                            }
+                            alt={user?.userName || "user"}
+                            fill
+                            className="object-cover"
+                            sizes="40px"
+                          />
+                        </div>
 
                         <div className="flex flex-col">
                           <span className="font-medium">{user?.userName}</span>
@@ -164,7 +168,7 @@ export function DataTable({
                     </TableCell>
 
                     {/* EMAIL VERIFIED */}
-                    <TableCell>
+                    {/* <TableCell>
                       <Badge
                         className={
                           user?.isEmailVerified
@@ -175,7 +179,7 @@ export function DataTable({
                       >
                         {user?.isEmailVerified ? "Verified" : "Not Verified"}
                       </Badge>
-                    </TableCell>
+                    </TableCell> */}
 
                     {/* SUBSCRIPTION */}
                     <TableCell>

@@ -227,10 +227,10 @@ export function DataTable({
                     {/* STATUS */}
                     <TableCell>
                       <Badge
-                        className={
+                        className={ 
                           product?.status === "active"
-                            ? "bg-green-50 text-green-600 border-0"
-                            : "bg-red-50 text-red-600 border-0"
+                            ? "capitalize bg-green-50 text-green-600 border-0"
+                            : "bg-red-50 capitalize text-red-600 border-0"
                         }
                       >
                         {product?.status}

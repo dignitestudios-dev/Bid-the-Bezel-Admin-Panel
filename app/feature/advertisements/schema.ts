@@ -16,20 +16,13 @@ export const advertisementSchema = z.object({
       message: "Image is required",
     }),
   is_active: z.boolean().optional(),
-
   link: z
     .string()
     .trim()
-    .optional()
-    .refine(
-      (val) => {
-        if (!val) return true; // empty allowed
-        return /^https?:\/\/.+/.test(val);
-      },
-      {
-        message: "Invalid URL",
-      },
-    ),
+    .min(1, "Link is required")
+    .refine((val) => /^https?:\/\/.+/.test(val), {
+      message: "Invalid URL",
+    }),
 });
 export const updateAdvertisementSchema = z.object({
   title: z.string().min(1),
@@ -37,16 +30,10 @@ export const updateAdvertisementSchema = z.object({
   link: z
     .string()
     .trim()
-    .optional()
-    .refine(
-      (val) => {
-        if (!val) return true; // empty allowed
-        return /^https?:\/\/.+/.test(val);
-      },
-      {
-        message: "Invalid URL",
-      },
-    ),
+    .min(1, "Link is required")
+    .refine((val) => /^https?:\/\/.+/.test(val), {
+      message: "Invalid URL",
+    }),
   is_active: z.boolean().optional(),
   image: z
     .any()

@@ -28,18 +28,18 @@ const metrics = (stats: any) => [
     icon: Archive,
     color: "text-purple-600",
   },
-  {
-    title: "Live",
-    value: stats?.liveAuction || 0,
-    icon: Clock,
-    color: "text-orange-500",
-  },
-  {
-    title: "Failed",
-    value: stats?.failedAuction || 0,
-    icon: XCircle,
-    color: "text-red-500",
-  },
+  // {
+  //   title: "Live Auctions",
+  //   value: stats?.liveAuction || 0,
+  //   icon: Clock,
+  //   color: "text-orange-500",
+  // },
+  // {
+  //   title: "Failed Auctions",
+  //   value: stats?.failedAuction || 0,
+  //   icon: XCircle,
+  //   color: "text-red-500",
+  // },
   {
     title: "Threshold",
     value: stats?.meetThreshold || 0,
@@ -51,7 +51,7 @@ const metrics = (stats: any) => [
 export function StatCards({ auctionStats }: any) {
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3">
       {metrics(auctionStats).map((m, i) => (
         <Card key={i} className="border rounded-xl hover:shadow-sm transition">
           <CardContent className="p-3 flex flex-col gap-2">
