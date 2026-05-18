@@ -182,15 +182,15 @@ export function DataTable({
                           className="rounded-lg object-cover border"
                         />
 
-                        <div className="flex flex-col">
-                          <span className="font-medium text-sm">
-                            {product?.brandName}
-                          </span>
+                      <div className="flex flex-col max-w-[180px]">
+  <span className="font-medium text-sm truncate">
+    {product?.brandName}
+  </span>
 
-                          <span className="text-sm text-muted-foreground">
-                            {product?.model}
-                          </span>
-                        </div>
+  <span className="text-sm text-muted-foreground truncate">
+    {product?.model}
+  </span>
+</div>
                       </div>
                     </TableCell>
 

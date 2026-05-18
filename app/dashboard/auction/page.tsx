@@ -14,6 +14,7 @@ export default function UsersPage() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [isReserved, setIsReserved] = useState(false);
+  const [failedAuction, setFailedAuction] = useState(false);
   const [shouldAdminIntervene, setShouldAdminIntervene] = useState(false);
 
   const debouncedSearch = useDebounce(search, 500);
@@ -24,6 +25,7 @@ export default function UsersPage() {
     status,
     isReserved,
     shouldAdminIntervene,
+    failedAuction,
   );
 
   const { data: auctionStats, isLoading: auctionStatsLoading } = useGetAuctionStats();
@@ -51,6 +53,8 @@ export default function UsersPage() {
           isReserved={isReserved}
           setIsReserved={setIsReserved}
           shouldAdminIntervene={shouldAdminIntervene}
+          failedAuction={failedAuction}
+          setFailedAuction={setFailedAuction}
           setShouldAdminIntervene={setShouldAdminIntervene}
         />
       </div>

@@ -40,16 +40,16 @@ const Page = () => {
   return (
     <div className="p-6 space-y-5">
       <div className="flex items-center gap-4 p-5 border rounded-xl bg-background">
-     <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full border bg-muted">
-  <Image
-    src={user?.profilePicture?.location || "/avatar.png"}
-    width={60}
-    height={60}
-    alt={user?.userName || "user"}
-    unoptimized
-    className="h-full w-full object-cover rounded-full"
-  />
-</div>
+        <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full border bg-muted">
+          <Image
+            src={user?.profilePicture?.location || "/avatar.png"}
+            width={60}
+            height={60}
+            alt={user?.userName || "user"}
+            unoptimized
+            className="h-full w-full object-cover rounded-full"
+          />
+        </div>
         <div className="flex-1 min-w-0">
           <h1 className="text-lg font-medium truncate">
             {user.userName || "No Username"}
@@ -158,7 +158,15 @@ const Page = () => {
             { label: "First name", value: user.firstName },
             { label: "Last name", value: user.lastName },
             { label: "Phone", value: user.phone },
-            { label: "Account type", value: user.type?.join(", ") },
+            {
+              label: "Account type",
+              value:
+                !user.activeSubscriptions || user.activeSubscriptions.length === 0
+                  ? "Guest"
+                  : user.type?.includes("seller")
+                    ? "Seller"
+                    : "Buyer",
+            },
             {
               label: "Joined",
               value: new Date(user.createdAt).toLocaleDateString("en-US", {

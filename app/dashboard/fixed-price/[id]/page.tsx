@@ -113,11 +113,11 @@ const Page = () => {
               )}
             </div>
 
-            <h1 className="text-3xl font-bold tracking-tight">
+            <h1 className="text-3xl font-bold tracking-tight break-words">
               {product?.brandName}
             </h1>
 
-            <p className="text-lg text-muted-foreground">{product?.model}</p>
+            <p className="text-lg text-muted-foreground break-words">{product?.model}</p>
           </div>
 
           {/* PRICE */}

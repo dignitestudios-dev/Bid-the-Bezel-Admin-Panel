@@ -9,6 +9,7 @@ export const useGetAuction = (
   status: string,
   isReserved: boolean,
   shouldAdminIntervene: boolean,
+  failedAuction: boolean
 ) => {
   return useQuery({
     queryKey: [
@@ -18,12 +19,36 @@ export const useGetAuction = (
       status,
       isReserved,
       shouldAdminIntervene,
+      failedAuction
     ],
     queryFn: async () => {
+      const params = new URLSearchParams();
+
+      params.append("page", String(page));
+      params.append("limit", "10");
+
+      if (search) {
+        params.append("search", search);
+      }
+
+      if (status) {
+        params.append("status", status);
+      }
+
+      if (isReserved) {
+        params.append("isReserved", "true");
+      }
+
+      if (shouldAdminIntervene) {
+        params.append("shouldAdminIntervene", "true");
+      }
+
+      if (failedAuction) {
+        params.append("failedOnly", "true");
+      }
+
       const res = await apiClient.get(
-        `admin/products/auction?page=${page}&limit=10&search=${
-          search || ""
-        }&status=${status || "all"}&isReserved=${isReserved}&shouldAdminIntervene=${shouldAdminIntervene}`,
+        `admin/products/auction?${params.toString()}`
       );
 
       return res.data;
@@ -45,6 +70,16 @@ export const useGetAuctionById = (productId: string) => {
     queryKey: ["get-auction-id", productId],
     queryFn: async () => {
       const res = await apiClient.get(`/admin/products/${productId}`);
+      return res.data;
+    },
+  });
+};
+
+export const useGetAuctionBids = (auctionId: string, page: number) => {
+  return useQuery({
+    queryKey: ["get-auction-bids", auctionId, page],
+    queryFn: async () => {
+      const res = await apiClient.get(`/admin/products/${auctionId}/bids?page=${page}&limit=10`);
       return res.data;
     },
   });

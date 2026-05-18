@@ -25,12 +25,13 @@ import {
 } from "@/components/ui/carousel";
 
 import { useParams, useRouter } from "next/navigation";
-import { useGetAuctionById } from "@/app/feature/auction/hooks";
+import { useGetAuctionBids, useGetAuctionById } from "@/app/feature/auction/hooks";
 import { useDeleteProduct } from "@/app/feature/fixed-price/hooks";
 import { useState } from "react";
 import { ConfirmDialog } from "../../fixed-price/_component/confirm-dialog";
 import ProductQA from "../_component/product-qa";
 import { formatDate, formatTime } from "@/lib/utils/date.utils";
+import BidsDataTable from "../_component/bids-data-table";
 
 const Page = () => {
   const router = useRouter();
@@ -41,6 +42,7 @@ const Page = () => {
   const id = params?.id as string;
 
   const { data, isLoading } = useGetAuctionById(id);
+
 
   const product = data?.data;
 
@@ -145,11 +147,11 @@ const Page = () => {
             </div>
 
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">
+              <h1 className="text-3xl font-bold tracking-tight break-words">
                 {product?.brandName}
               </h1>
 
-              <p className="text-lg text-muted-foreground">{product?.model}</p>
+              <p className="text-lg text-muted-foreground break-words">{product?.model}</p>
             </div>
           </div>
 
@@ -395,6 +397,7 @@ const Page = () => {
         onConfirm={confirmDelete}
       />
       <ProductQA />
+      <BidsDataTable id={id} />
     </div>
   );
 };

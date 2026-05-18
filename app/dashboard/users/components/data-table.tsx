@@ -132,7 +132,7 @@ export function DataTable({
             <TableHeader>
               <TableRow>
                 <TableHead>User</TableHead>
-                
+
                 <TableHead>Subscribed</TableHead>
                 <TableHead>User Status</TableHead>
                 <TableHead>Actions</TableHead>
@@ -211,11 +211,10 @@ export function DataTable({
                       <div className="flex items-center gap-2">
                         <Link
                           href={`/dashboard/users/${user?._id}`}
-                          className="h-8 w-8"
+                          className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-muted"
                         >
                           <Eye className="size-4" />
                         </Link>
-
                         <Button
                           variant="ghost"
                           size="icon"
@@ -226,9 +225,11 @@ export function DataTable({
                           {isPending && loadingUserId === user._id ? (
                             <div className="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-black" />
                           ) : user?.isDeactivatedByAdmin ? (
-                            <ToggleRight className="size-5 text-green-600" />
+                            // INACTIVE
+                            <ToggleLeft className="size-6 text-red-500" />
                           ) : (
-                            <ToggleLeft className="size-5 text-red-600" />
+                            // ACTIVE
+                            <ToggleRight className="size-6 text-green-600" />
                           )}
                         </Button>
                       </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Clock, File, FileText, X } from "lucide-react";
+import { Clock, FileText, X } from "lucide-react";
+import File from "@/components/File";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
@@ -81,9 +82,9 @@ const Chats = () => {
           return prev.map((msg) =>
             msg.tempId === incomingMsg.tempId
               ? {
-                  ...incomingMsg,
-                  status: "sent",
-                }
+                ...incomingMsg,
+                status: "sent",
+              }
               : msg,
           );
         }
@@ -245,9 +246,8 @@ const Chats = () => {
             return (
               <div
                 key={item._id}
-                className={`flex  items-end gap-2 mb-3 ${
-                  isMine ? "justify-end" : "justify-start"
-                }`}
+                className={`flex  items-end gap-2 mb-3 ${isMine ? "justify-end" : "justify-start"
+                  }`}
               >
                 {/* LEFT AVATAR (others) */}
                 {!isMine && (
@@ -260,11 +260,10 @@ const Chats = () => {
                 {/* MESSAGE BUBBLE */}
                 <div
                   className={`relative max-w-[75%] rounded-2xl px-4 py-3 shadow-sm
-        ${
-          isMine
-            ? "bg-gray-100 text-gray-800 border border-gray-200 rounded-br-md"
-            : "bg-white border border-gray-200 text-gray-900 rounded-bl-md"
-        }`}
+        ${isMine
+                      ? "bg-gray-100 text-gray-800 border border-gray-200 rounded-br-md"
+                      : "bg-white border border-gray-200 text-gray-900 rounded-bl-md"
+                    }`}
                 >
                   {item?.text && (
                     <p className="rounded-xl rounded-bl-none max-w-md break-all ">
@@ -323,9 +322,8 @@ const Chats = () => {
 
                   {/* TIME */}
                   <span
-                    className={`text-xs block mt-1 ${
-                      isMine ? "text-gray-400 text-right" : "text-gray-500"
-                    }`}
+                    className={`text-xs block mt-1 ${isMine ? "text-gray-400 text-right" : "text-gray-500"
+                      }`}
                   >
                     <div className="flex items-center justify-end gap-1 mt-1 ">
                       {item.status === "sending" ? (
@@ -434,7 +432,7 @@ const Chats = () => {
           />
 
           <label htmlFor="chat-file" className="cursor-pointer">
-            <File className="w-5 h-5" />
+            <File />
           </label>
 
           <input

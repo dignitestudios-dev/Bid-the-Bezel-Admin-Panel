@@ -104,9 +104,10 @@ const Page = () => {
         status: type,
       },
       {
-        onSuccess: () =>{
+        onSuccess: () => {
           router.push("/dashboard/authentication");
-          setConfirm(null)},
+          setConfirm(null)
+        },
       },
     );
   };
@@ -163,38 +164,39 @@ const Page = () => {
               <Badge variant="secondary" className="capitalize">
                 {product?.type?.replace("_", " ")}
               </Badge>
-              {product?.authentication?.status !== "approved" && (
-                <div className="flex items-center gap-2">
-                  {/* APPROVE */}
-                  <Button
-                    size="sm"
-                    disabled={isPending}
-                    onClick={() => setConfirm({ type: "approved", product })}
-                    className="h-8 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
-                  >
-                    Approve
-                  </Button>
+              {product?.authentication?.status !== "approved" ||
+                product?.authentication?.status !== "rejected" && (
+                  <div className="flex items-center gap-2">
+                    {/* APPROVE */}
+                    <Button
+                      size="sm"
+                      disabled={isPending}
+                      onClick={() => setConfirm({ type: "approved", product })}
+                      className="h-8 px-3 text-xs bg-green-600 hover:bg-green-700 text-white"
+                    >
+                      Approve
+                    </Button>
 
-                  {/* REJECT */}
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    disabled={isPending}
-                    onClick={() => setConfirm({ type: "rejected", product })}
-                    className="h-8 px-3 text-xs border-red-200 text-red-600 hover:bg-red-50"
-                  >
-                    Reject
-                  </Button>
-                </div>
-              )}
+                    {/* REJECT */}
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      disabled={isPending}
+                      onClick={() => setConfirm({ type: "rejected", product })}
+                      className="h-8 px-3 text-xs border-red-200 text-red-600 hover:bg-red-50"
+                    >
+                      Reject
+                    </Button>
+                  </div>
+                )}
             </div>
 
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">
+              <h1 className="text-3xl font-bold tracking-tight break-words">
                 {product?.brandName}
               </h1>
 
-              <p className="text-lg text-muted-foreground">{product?.model}</p>
+              <p className="text-lg text-muted-foreground break-words">{product?.model}</p>
             </div>
           </div>
 
@@ -246,7 +248,7 @@ const Page = () => {
           <div className="space-y-2">
             <h2 className="text-lg font-semibold">Description</h2>
 
-            <p className="leading-7 text-muted-foreground">
+            <p className="leading-7 text-muted-foreground break-words">
               {product?.description}
             </p>
           </div>

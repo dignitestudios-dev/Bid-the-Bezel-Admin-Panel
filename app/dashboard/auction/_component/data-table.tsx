@@ -43,6 +43,8 @@ interface DataTableProps {
 
   shouldAdminIntervene: boolean;
   setShouldAdminIntervene: (value: boolean) => void;
+  failedAuction: boolean;
+  setFailedAuction: (value: boolean) => void;
 }
 
 export function DataTable({
@@ -57,6 +59,8 @@ export function DataTable({
   isReserved,
   setIsReserved,
   shouldAdminIntervene,
+  setFailedAuction,
+  failedAuction,
   setShouldAdminIntervene,
 }: DataTableProps) {
   const [open, setOpen] = useState(false);
@@ -129,7 +133,11 @@ export function DataTable({
               type="checkbox"
               checked={isReserved}
               onChange={(e) => {
-                setIsReserved(e.target.checked);
+                const checked = e.target.checked;
+                setIsReserved(checked);
+                if (checked) {
+                  setShouldAdminIntervene(false);
+                }
                 setPage(1);
               }}
             />
@@ -142,11 +150,31 @@ export function DataTable({
               type="checkbox"
               checked={shouldAdminIntervene}
               onChange={(e) => {
-                setShouldAdminIntervene(e.target.checked);
+                const checked = e.target.checked;
+                setShouldAdminIntervene(checked);
+                if (checked) {
+                  setIsReserved(false);
+                }
                 setPage(1);
               }}
             />
             Needs Admin Intervention
+          </label>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input
+              type="checkbox"
+              checked={failedAuction}
+              onChange={(e) => {
+                const checked = e.target.checked;
+                setFailedAuction(checked);
+                if (checked) {
+                  setShouldAdminIntervene(false);
+                  setIsReserved(false);
+                }
+                setPage(1);
+              }}
+            />
+            Failed Auction
           </label>
         </div>
       </div>
@@ -183,12 +211,12 @@ export function DataTable({
                           className="rounded-lg object-cover border"
                         />
 
-                        <div className="flex flex-col">
-                          <span className="font-medium text-sm">
+                        <div className="flex flex-col max-w-[180px]">
+                          <span className="font-medium text-sm truncate">
                             {product?.brandName}
                           </span>
 
-                          <span className="text-sm text-muted-foreground">
+                          <span className="text-sm text-muted-foreground truncate">
                             {product?.model}
                           </span>
                         </div>
@@ -227,7 +255,7 @@ export function DataTable({
                     {/* STATUS */}
                     <TableCell>
                       <Badge
-                        className={ 
+                        className={
                           product?.status === "active"
                             ? "capitalize bg-green-50 text-green-600 border-0"
                             : "bg-red-50 capitalize text-red-600 border-0"
