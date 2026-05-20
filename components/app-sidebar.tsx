@@ -73,7 +73,7 @@ const data = {
           icon: Users,
         },
         {
-          title: "Fixed Price",
+          title: "Marketplace",
           url: "/dashboard/fixed-price",
           icon: CreditCard,
         },

@@ -51,7 +51,7 @@ const KeyMetrics = () => {
       icon: Gavel,
     },
     {
-      title: "Fixed Price Products",
+      title: "Marketplace Products",
       value: stats?.products?.byType?.fixedPrice || 0,
       sub: "Direct Purchase Listings",
       icon: BadgeDollarSign,

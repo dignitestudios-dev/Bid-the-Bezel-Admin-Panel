@@ -98,7 +98,7 @@ export function ChartBarMultiple() {
         </div>
 
         <div className="text-muted-foreground leading-none">
-          Auction, Fixed Price & Taking Offers insights
+          Auction, Marketplace Price & Taking Offers insights
         </div>
       </CardFooter>
     </Card>
