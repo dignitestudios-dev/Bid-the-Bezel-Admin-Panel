@@ -25,7 +25,10 @@ import {
 } from "@/components/ui/carousel";
 
 import { useParams, useRouter } from "next/navigation";
-import { useGetAuctionBids, useGetAuctionById } from "@/app/feature/auction/hooks";
+import {
+  useGetAuctionBids,
+  useGetAuctionById,
+} from "@/app/feature/auction/hooks";
 import { useDeleteProduct } from "@/app/feature/fixed-price/hooks";
 import { useState } from "react";
 import { ConfirmDialog } from "../../fixed-price/_component/confirm-dialog";
@@ -35,6 +38,7 @@ import BidsDataTable from "../_component/bids-data-table";
 
 const Page = () => {
   const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState(0);
   const [open, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const { mutate: deleteProduct, isPending } = useDeleteProduct();
@@ -42,7 +46,6 @@ const Page = () => {
   const id = params?.id as string;
 
   const { data, isLoading } = useGetAuctionById(id);
-
 
   const product = data?.data;
 
@@ -91,7 +94,11 @@ const Page = () => {
         {/* IMAGE CAROUSEL */}
         <div className="rounded-2xl border bg-background p-4">
           <Carousel className="w-full">
-            <CarouselContent>
+            <CarouselContent
+              style={{
+                transform: `translateX(-${activeIndex * 100}%)`,
+              }}
+            >
               {product?.images?.map((img: any) => (
                 <CarouselItem key={img?._id}>
                   <div className="relative h-125 w-full overflow-hidden rounded-2xl border bg-muted">
@@ -106,17 +113,17 @@ const Page = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-
-            <CarouselPrevious className="left-4" />
-            <CarouselNext className="right-4" />
           </Carousel>
 
           {/* THUMBNAILS */}
           <div className="mt-4 flex gap-3 overflow-x-auto">
-            {product?.images?.map((img: any) => (
+            {product?.images?.map((img: any, index: number) => (
               <div
                 key={img?._id}
-                className="relative h-20 w-20 overflow-hidden rounded-xl border shrink-0"
+                onClick={() => setActiveIndex(index)}
+                className={`relative h-20 w-20 overflow-hidden rounded-xl border shrink-0 cursor-pointer ${
+                  activeIndex === index ? "ring-2 ring-white" : ""
+                }`}
               >
                 <Image
                   src={img?.location}
@@ -151,7 +158,9 @@ const Page = () => {
                 {product?.brandName}
               </h1>
 
-              <p className="text-lg text-muted-foreground break-words">{product?.model}</p>
+              <p className="text-lg text-muted-foreground break-words">
+                {product?.model}
+              </p>
             </div>
           </div>
 
@@ -203,7 +212,7 @@ const Page = () => {
           <div className="space-y-2">
             <h2 className="text-lg font-semibold">Description</h2>
 
-            <p className="leading-7 text-muted-foreground">
+            <p className="leading-7 text-muted-foreground break-words">
               {product?.description}
             </p>
           </div>
@@ -285,10 +294,13 @@ const Page = () => {
             </div>
 
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Delivery Flow</span>
+              <span className="text-muted-foreground">Delivery Status</span>
 
               <span className="font-medium capitalize">
-                {product?.deliveryFlow?.replace("_", " ")}
+                {product?.deliveryFlow
+                  ?.replaceAll("_", " ")
+                  .toLowerCase()
+                  .replace(/\b\w/g, (c: any) => c.toUpperCase())}
               </span>
             </div>
 

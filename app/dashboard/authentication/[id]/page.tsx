@@ -40,6 +40,7 @@ import { useState } from "react";
 import { ConfirmDialog } from "../../fixed-price/_component/confirm-dialog";
 import { Button } from "@/components/ui/button";
 import { useAuthenticateUser } from "@/app/feature/authentication/hooks";
+import { formatDate } from "@/lib/utils/date.utils";
 
 const Page = () => {
   const router = useRouter();
@@ -106,7 +107,7 @@ const Page = () => {
       {
         onSuccess: () => {
           router.push("/dashboard/authentication");
-          setConfirm(null)
+          setConfirm(null);
         },
       },
     );
@@ -165,7 +166,7 @@ const Page = () => {
                 {product?.type?.replace("_", " ")}
               </Badge>
               {product?.authentication?.status !== "approved" ||
-                product?.authentication?.status !== "rejected" && (
+                (product?.authentication?.status !== "rejected" && (
                   <div className="flex items-center gap-2">
                     {/* APPROVE */}
                     <Button
@@ -188,7 +189,7 @@ const Page = () => {
                       Reject
                     </Button>
                   </div>
-                )}
+                ))}
             </div>
 
             <div>
@@ -196,7 +197,9 @@ const Page = () => {
                 {product?.brandName}
               </h1>
 
-              <p className="text-lg text-muted-foreground break-words">{product?.model}</p>
+              <p className="text-lg text-muted-foreground break-words">
+                {product?.model}
+              </p>
             </div>
           </div>
 
@@ -284,7 +287,7 @@ const Page = () => {
                 </div>
 
                 <p className="text-sm font-medium">
-                  {new Date(product?.auction?.startsAt).toLocaleString()}
+                  {formatDate(product?.createdAt)}
                 </p>
               </div>
 
@@ -295,7 +298,7 @@ const Page = () => {
                 </div>
 
                 <p className="text-sm font-medium">
-                  {new Date(product?.auction?.endsAt).toLocaleString()}
+                  {formatDate(product?.updatedAt)}
                 </p>
               </div>
             </div>
@@ -320,7 +323,7 @@ const Page = () => {
             </div>
 
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Delivery Flow</span>
+              <span className="text-muted-foreground">Delivery Status</span>
 
               <span className="font-medium capitalize">
                 {product?.deliveryFlow?.replace("_", " ")}
@@ -428,7 +431,7 @@ const Page = () => {
             <DialogTitle>Confirm Action</DialogTitle>
 
             <DialogDescription>
-              Do you really want to{" "}
+              Are you sure you want to approve
               <span className="font-semibold">
                 {confirm?.type === "approved" ? "approve" : "reject"}
               </span>{" "}

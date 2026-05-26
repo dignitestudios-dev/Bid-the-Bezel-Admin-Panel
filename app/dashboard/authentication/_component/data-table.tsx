@@ -84,7 +84,7 @@ export function DataTable({
       },
     );
   };
-  
+
   return (
     <div className="w-full space-y-4">
       {/* FILTERS */}
@@ -182,15 +182,15 @@ export function DataTable({
                           className="rounded-lg object-cover border"
                         />
 
-                      <div className="flex flex-col max-w-[180px]">
-  <span className="font-medium text-sm truncate">
-    {product?.brandName}
-  </span>
+                        <div className="flex flex-col max-w-[180px]">
+                          <span className="font-medium text-sm truncate">
+                            {product?.brandName}
+                          </span>
 
-  <span className="text-sm text-muted-foreground truncate">
-    {product?.model}
-  </span>
-</div>
+                          <span className="text-sm text-muted-foreground truncate">
+                            {product?.model}
+                          </span>
+                        </div>
                       </div>
                     </TableCell>
 
@@ -203,8 +203,8 @@ export function DataTable({
 
                     {/* SELLER */}
                     <TableCell>
-                      <div className="flex flex-col">
-                        <span className="text-sm font-medium">
+                      <div className="flex flex-col max-w-55">
+                        <span className="text-sm font-medium truncate">
                           {product?.seller?.firstName || "N/A"}{" "}
                           {product?.seller?.lastName}
                         </span>
@@ -312,7 +312,7 @@ export function DataTable({
             <DialogTitle>Confirm Action</DialogTitle>
 
             <DialogDescription>
-              Do you really want to{" "}
+              Are you sure you want to approve
               <span className="font-semibold">
                 {confirm?.type === "approved" ? "approve" : "reject"}
               </span>{" "}

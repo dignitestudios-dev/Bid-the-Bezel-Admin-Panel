@@ -84,21 +84,44 @@ export function CreateAdvertisementModal({
 
     if (!file) return;
 
-    // 10MB check
+    // SIZE VALIDATION
     if (file.size > 10 * 1024 * 1024) {
       form.setError("image", {
         type: "manual",
         message: "Image must be less than 10MB",
       });
+
       return;
     }
 
-    form.clearErrors("image");
+    const image = new window.Image();
 
-    form.setValue("image", file);
+    image.onload = () => {
+      const width = image.width;
+      const height = image.height;
 
-    const imageUrl = URL.createObjectURL(file);
-    setImagePreview(imageUrl);
+      // 1:1 RATIO VALIDATION
+      if (width !== height) {
+        form.setError("image", {
+          type: "manual",
+          message: "Only square (1:1) images are allowed",
+        });
+
+        setImagePreview(null);
+
+        return;
+      }
+
+      form.clearErrors("image");
+
+      form.setValue("image", file);
+
+      const imageUrl = URL.createObjectURL(file);
+
+      setImagePreview(imageUrl);
+    };
+
+    image.src = URL.createObjectURL(file);
   };
   const onSubmit = (values: any) => {
     const formData = new FormData();

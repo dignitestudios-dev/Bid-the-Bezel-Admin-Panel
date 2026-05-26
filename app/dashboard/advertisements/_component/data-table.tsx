@@ -110,7 +110,7 @@ export function DataTable({
                 advertisements.map((advertisement) => (
                   <TableRow key={advertisement?._id}>
                     <TableCell>
-                      <div className="flex min-w-60 items-center gap-3">
+                      <div className="flex min-w-60 items-center gap-3 max-w-55">
                         <Image
                           src={advertisement?.image?.location || "/avatar.png"}
                           alt={advertisement?.title || "advertisement"}
@@ -119,8 +119,8 @@ export function DataTable({
                           className="rounded-lg border object-cover"
                         />
 
-                        <div className="flex flex-col">
-                          <span className="text-sm font-semibold">
+                        <div className="flex flex-col min-w-0">
+                          <span className="text-sm font-semibold truncate">
                             {advertisement?.title}
                           </span>
                         </div>

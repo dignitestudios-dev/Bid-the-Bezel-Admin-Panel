@@ -231,14 +231,14 @@ export function DataTable({
                     </TableCell>
 
                     {/* SELLER */}
-                    <TableCell>
-                      <div className="flex flex-col">
-                        <span className="text-sm font-medium">
-                          {product?.seller?.firstName || "N/A"}{" "}
-                          {product?.seller?.lastName}
+                    <TableCell className="max-w-55">
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-sm font-medium truncate">
+                          {product?.seller?.userName || "N/A"}{" "}
+                         
                         </span>
 
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-xs text-muted-foreground truncate">
                           {product?.seller?.email}
                         </span>
                       </div>

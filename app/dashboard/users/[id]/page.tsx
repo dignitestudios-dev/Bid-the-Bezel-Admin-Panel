@@ -161,9 +161,9 @@ const Page = () => {
             {
               label: "Account type",
               value:
-                !user.activeSubscriptions || user.activeSubscriptions.length === 0
+                user?.activeSubscriptions?.length === 0
                   ? "Guest"
-                  : user.type?.includes("seller")
+                  : user?.type?.includes("seller")
                     ? "Seller"
                     : "Buyer",
             },
@@ -184,9 +184,15 @@ const Page = () => {
               }),
             },
           ].map(({ label, value }) => (
-            <div key={label} className="flex justify-between text-sm">
-              <span className="text-muted-foreground">{label}</span>
-              <span>{value || "—"}</span>
+            <div
+              key={label}
+              className="flex items-start justify-between gap-3 text-sm"
+            >
+              <span className="text-muted-foreground shrink-0">{label}</span>
+
+              <span className="font-medium text-right min-w-0 break-all">
+                {value || "—"}
+              </span>
             </div>
           ))}
         </div>

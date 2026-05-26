@@ -122,7 +122,9 @@ const Page = () => {
               {product?.brandName}
             </h1>
 
-            <p className="text-lg text-muted-foreground break-words">{product?.model}</p>
+            <p className="text-lg text-muted-foreground break-words">
+              {product?.model}
+            </p>
           </div>
 
           {/* PRICE */}
@@ -205,9 +207,12 @@ const Page = () => {
             </div>
 
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Delivery Flow</span>
+              <span className="text-muted-foreground">Delivery Status</span>
               <span className="font-medium capitalize">
-                {product?.deliveryFlow?.replace("_", " ")}
+                {product?.deliveryFlow
+                  ?.replaceAll("_", " ")
+                  .toLowerCase()
+                  .replace(/\b\w/g, (c: any) => c.toUpperCase())}
               </span>
             </div>
 
