@@ -179,7 +179,7 @@ export function CreateAdvertisementModal({
       <DialogContent
         onInteractOutside={(e) => e.preventDefault()}
         onEscapeKeyDown={(e) => e.preventDefault()}
-        className="max-h-[90vh] overflow-y-auto overflow-x-hidden sm:max-w-xl rounded-2xl p-0"
+        className="max-h-[90vh] overflow-y-auto overflow-x-hidden sm:max-w-xl rounded-[10px] p-0 custom-scrollbar"
       >
         <div className="border-b px-6 py-4">
           <DialogHeader>
